@@ -3,24 +3,10 @@ require 'dbconn.php';
 
 ?>
 <?php
-echo "hello";
+
 if (isSet($_POST['submit'])) { //submitted form
 	echo "this far";
-	$message = ($_POST['message']);
-	$type = $_POST['subject'];
-	$title = $_POST['title'];
-	echo $message;
-	$query1 = "INSERT INTO Message (messageConents, type, title, approved) VALUES (?,?,?,?)";
-	//add User ID into database
-	$insertMsg = $connection->prepare($query1);
-	if ($insertMsg = $connection ->prepare($query1)) {
-		$insertMsg -> bind_param('ssss', $message, $type, $title, '0');
-		echo "here";
-	} else {
-		die("Error".$connection ->error);
-	}
-	mysqli_stmt_execute($insertMsg);
-  	mysqli_stmt_close($insertMsg);	
+	
 ///////////////////////////
 }	
 ?>
