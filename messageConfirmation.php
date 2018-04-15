@@ -6,7 +6,7 @@
 	$messageContents = ($_POST['message']);
 	$type = $_POST['subject'];
 	$title = $_POST['title'];
-	echo $message;
+
 	$query1 = "INSERT INTO Messages (messageContents, type, title, approved) VALUES (?,?,?,?)";
 	//add User ID into database
 	$approved = 0;
