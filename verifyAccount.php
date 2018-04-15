@@ -1,7 +1,7 @@
 
 <?php 
 // Define database connection details via constants 
- require'dbcon.php';
+ require'dbconn.php';
 $conn = connect_to_db("ClaremontTalk");
 $email = $_POST['email'];
 $psw = $_POST['psw-repeat'];
