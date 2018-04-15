@@ -6,17 +6,27 @@
 	$messageContents = ($_POST['message']);
 	$type = $_POST['subject'];
 	$title = $_POST['title'];
+	
+	//TODO: look up userID from db using email from session variable
+	$userID = 1;
+	//TODO
 
-	$query1 = "INSERT INTO Messages (messageContents, type, title, approved) VALUES (?,?,?,?)";
-	//add User ID into database
+	echo $messageContents;
+	echo $type;
+	echo $title;
 	$approved = 0;
+	$query1 = "INSERT INTO Messages (messageContents, type, title, approved, userID) VALUES (?,?,?,?,?)";
+	//add User ID into database
 	$insertMsg = $connection-> prepare($query1);
-	if ($insertMsg = $connection -> prepare($query1)) {
-		$insertMsg -> bind_param('sssi', $messageContents, $type, $title, $approved);
+	if ($insertMsg) {
+		
+		$insertMsg -> bind_param('sssii', $messageContents, $type, $title, $approved, $userID);
 		echo "here";
 	} else {
 		die("Error".$connection ->error);
 	}
+	echo "HELLO!";
+
 	mysqli_stmt_execute($insertMsg);
   	mysqli_stmt_close($insertMsg);	
 ?>
