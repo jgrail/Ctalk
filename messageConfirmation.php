@@ -5,9 +5,10 @@
 <head>
 </head>
 <body>
-	<h3>Your Message has been Recorded</h3>
+	<h2>Your Message Has Been Recorded</h2>
 	<p>Thank you for posting your message! It will be distributed on Claremont Talk once it is validated by our administrators.
 	</p>
-	<href a="board.php">View Message Board</href>
+	<a href="board.php">View Message Board</a><br>
+	<a href ="message.php">Post New Message</a>
 </body>
 </html>
