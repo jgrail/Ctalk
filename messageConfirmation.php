@@ -3,7 +3,7 @@
 	require 'dbconn.php';
 	$connection = connect_to_db("ClaremontTalk");
 
-	$message = ($_POST['message']);
+	$messageContents = ($_POST['message']);
 	$type = $_POST['subject'];
 	$title = $_POST['title'];
 	echo $message;
@@ -12,7 +12,7 @@
 	$approved = 0;
 	$insertMsg = $connection-> prepare($query1);
 	if ($insertMsg = $connection -> prepare($query1)) {
-		$insertMsg -> bind_param('sssi', $message, $type, $title, $approved);
+		$insertMsg -> bind_param('sssi', $messageContents, $type, $title, $approved);
 		echo "here";
 	} else {
 		die("Error".$connection ->error);
