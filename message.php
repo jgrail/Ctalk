@@ -1,7 +1,8 @@
 <?php
 session_start();
 require 'ddl.sql';
-define('DBHOST',"localhost");
+require 'dbconn.php';
+/*define('DBHOST',"localhost");
 define('DBNAME',"ClaremontTalk");
 define('DBUSER',"Claremont");
 define('DBPASS',"talk");
@@ -13,7 +14,7 @@ if ($connection -> connect_error) {
 	exit($output);
 }
 
-$sql = "GRANT USAGE On *.* to ".DBUSER. '@localhost identified by ' . "'" . DBPASS . "'";
+$sql = "GRANT USAGE On *.* to ".DBUSER. '@localhost identified by ' . "'" . DBPASS . "'"; */
 	//echo $output;
 ?>
 <?php
