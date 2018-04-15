@@ -21,8 +21,8 @@ hr {
 }
 
 /* Set a style for all buttons */
-button {
-  background-color: cyan;
+.button {
+  background-color: dodgerblue;
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
@@ -32,12 +32,7 @@ button {
   opacity: 0.9;
 }
 
-.error {
-  color: red;
-  font-size: 20px;
-}
-
-button:hover {
+.button:hover {
   opacity:1;
 }
 
