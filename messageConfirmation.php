@@ -7,11 +7,12 @@
 	$type = $_POST['subject'];
 	$title = $_POST['title'];
 	echo $message;
-	$query1 = "INSERT INTO Message (messageContents, type, title, approved) VALUES (?,?,?,?)";
+	$query1 = "INSERT INTO Messages (messageContents, type, title, approved) VALUES (?,?,?,?)";
 	//add User ID into database
+	$approved = 0;
 	$insertMsg = $connection-> prepare($query1);
 	if ($insertMsg = $connection -> prepare($query1)) {
-		$insertMsg -> bind_param('ssss', $message, $type, $title, '0');
+		$insertMsg -> bind_param('sssi', $message, $type, $title, $approved);
 		echo "here";
 	} else {
 		die("Error".$connection ->error);
