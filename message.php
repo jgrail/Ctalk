@@ -3,10 +3,24 @@ require 'dbconn.php';
 
 ?>
 <?php
-
+echo "hello";
 if (isSet($_POST['submit'])) { //submitted form
 	echo "this far";
-	
+	$message = ($_POST['message']);
+	$type = $_POST['subject'];
+	$title = $_POST['title'];
+	echo $message;
+	$query1 = "INSERT INTO Message (messageConents, type, title, approved) VALUES (?,?,?,?)";
+	//add User ID into database
+	$insertMsg = $connection->prepare($query1);
+	if ($insertMsg = $connection ->prepare($query1)) {
+		$insertMsg -> bind_param('ssss', $message, $type, $title, '0');
+		echo "here";
+	} else {
+		die("Error".$connection ->error);
+	}
+	mysqli_stmt_execute($insertMsg);
+  	mysqli_stmt_close($insertMsg);	
 ///////////////////////////
 }	
 ?>
@@ -30,6 +44,8 @@ if (isSet($_POST['submit'])) { //submitted form
 			<option value = "entertainment">Entertainment</option>
 			<option value = "other">Other</option>
 		</select><br><br>
+		<strong>Name:</strong><br>
+		<input type = "text" name = "name" required><br><br>
 		<strong>Location:</strong><br>
 		<input type = "text" name = "location" required><br><br>
 		<strong>Message:</strong><br>

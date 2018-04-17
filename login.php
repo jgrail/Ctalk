@@ -56,8 +56,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if($selectUser -> fetch()){
 
+            $_SESSION['userID'] = $userID;
+            $_SESSION['email'] = $email;
+
             mysqli_stmt_close($selectUser);
-            session_destroy();
+            
+           
+
             header("Location: viewMessages.php");
         }
 
