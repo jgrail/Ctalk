@@ -7,6 +7,7 @@
 	$type = $_POST['subject'];
 	$title = $_POST['title'];
 	$name = $_POST['name'];
+	$image = $_POST['img'];
 	
 	//TODO: look up userID from db using email from session variable
 	
@@ -19,12 +20,12 @@
 	echo $title;
 	echo $name;
 	$approved = 0;
-	$query1 = "INSERT INTO Messages (name, messageContents, type, title, approved, userID) VALUES (?,?,?,?,?,?)";
+	$query1 = "INSERT INTO Messages (name, messageContents, type, title, approved, userID, photo) VALUES (?,?,?,?,?,?,?)";
 	//add User ID into database
 	$insertMsg = $connection-> prepare($query1);
 	if ($insertMsg) {
 		
-		$insertMsg -> bind_param('ssssii', $name, $messageContents, $type, $title, $approved, $userID);
+		$insertMsg -> bind_param('ssssiib', $name, $messageContents, $type, $title, $approved, $userID, $image);
 		echo "here";
 	} else {
 		die("Error".$connection ->error);
