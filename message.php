@@ -51,7 +51,7 @@ if (isSet($_POST['submit'])) { //submitted form
 		<strong>Message:</strong><br>
 		<textarea rows = "7" cols="50" name = "message" required></textarea><br>
 		<!--<input type = "text" rows = "10" name = "message" required><br>-->
-		<input type = "button" name = "img" value = "Upload Image">
+		<input type="file" name="img" accept="image/*" value = "Upload Image>
 		<input type = "submit" value = "Submit Message">
 	</form>
 </body>
