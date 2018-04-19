@@ -25,14 +25,11 @@ CREATE TABLE Messages(
   approved INT UNSIGNED NOT NULL,
   /*image VARBINARY(MAX),*/
   title VARCHAR(256) NOT NULL,
-  name VARCHAR(256) NOT NULL,
+  name VARCHAR(256) NOT NULL,  
+  photo BLOB,
   /*date DATETIME NOT NULL DEFAULT (GETDATE()) NOT NULL,*/
   FOREIGN KEY(userID) REFERENCES USER(userID)
+
 ); 
 
-/*A table to hold a Multimedia like pictures*/
-CREATE TABLE Multimedia(
-    messageId INT UNSIGNED NOT NULL,
-    caption VARCHAR(256) NOT NULL,
-    FOREIGN KEY(messageId) REFERENCES Messages(messageId)
-); 
+
