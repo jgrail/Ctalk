@@ -15,10 +15,6 @@
 	$userID = 1;
 	//TODO "stateless design?"
 
-	//echo $messageContents;
-	//echo $type;
-	//echo $title;
-	//echo $name;
 	$approved = 0;
 	$query1 = "INSERT INTO Messages (name, messageContents, type, title, approved, userID, photo) VALUES (?,?,?,?,?,?,?)";
 	//add User ID into database
@@ -26,11 +22,9 @@
 	if ($insertMsg) {
 		
 		$insertMsg -> bind_param('ssssiib', $name, $messageContents, $type, $title, $approved, $userID, $image);
-		//echo "here";
 	} else {
 		die("Error".$connection ->error);
 	}
-	//echo "HELLO!";
 
 	mysqli_stmt_execute($insertMsg);
   	mysqli_stmt_close($insertMsg);	
@@ -38,15 +32,14 @@
 <!DOCTYPE html>
 <head>
 	<title>Message Confirmation</title>
+	<link rel="stylesheet" href="CTalkStyle.css">
 </head>
-<body>
-	<?php 
-	//echo $_POST['subject'];
-	?>
+<body class = "bckgrnd" style="background-color: #ccf6ff">
 	<h2>Your Message Has Been Recorded</h2>
+	<img src="http://a.scpr.org/i/c7b8ab50e2167c6bc4fb12e02760a18c/65101-full.jpg" height = "250" width="750" align="center">
 	<p>Thank you for posting your message! It will be distributed on Claremont Talk once it is validated by our administrators.
 	</p>
-	<button type = "button" onclick="window.location.href='viewMessages.php'">View Message Board</button>
-	<button type = "button" onclick="window.location.href='messages.php'">Post New Message</button>
+	<button type = "button" class="button" onclick="window.location.href='viewMessages.php'">View Message Board</button>
+	<button type = "button" class="button" onclick="window.location.href='messages.php'">Post New Message</button>
 </body>
 </html>
