@@ -32,7 +32,7 @@ href = "createLogin.css" />
     </select>
 
 
-    <p>By creating an account you agree to our <a href="#" style="color:blue">Terms and conditions</a>.</p>
+    <p>By creating an account you agree to our <a href="terms.html" target="_blank" style="color:blue">Terms and Conditions</a>.</p>
 
     <div class="clearfix">
       <button type="submit" class="button">Sign Up</button>
