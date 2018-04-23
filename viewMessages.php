@@ -11,7 +11,7 @@
 	<title>Pageable Displays</title>
 	<style>
 		tr:nth-child(even) {
-			background-color: #FF8000;
+			background-color: #f1f1f1;
 		}
 	</style>
 		
@@ -41,6 +41,7 @@ function createDataTable($start, $itemsPerPage, $links) {
 	$qry = "SELECT title, name, messageContents, type, photo FROM Messages 
 				ORDER BY {$links['orderby']}
 				LIMIT $start, $itemsPerPage ";
+
 		
 	echo  "<table class=\"fixed\">
 				<tr>
@@ -101,80 +102,88 @@ function findstart(){
 		
  	return($start);
 }
-function createSortLinks(){
 
-	$namelink = "{$_SERVER['PHP_SELF']}?sort=nameA";   
+function createSortLinks(){
+	$nameLink = "{$_SERVER['PHP_SELF']}?sort=nameA";  
+	//echo  $namelink."<br>";
 	$typeLink = "{$_SERVER['PHP_SELF']}?sort=typeA"; 
+	//echo $typeLink."<br>";
 	$messageLink = "{$_SERVER['PHP_SELF']}?sort=messageA"; 
+	//echo $messageLink."<br>";
 	$photoLink = "{$_SERVER['PHP_SELF']}?sort=photoA";  
-	$titleLink = "{$_SERVER['PHP_SELF']}?sort=titleA"; 
-	$orderby="type ASC";
-	$sort = isset($_GET['sort']) ? $_GET['sort']: "titleA" ;
+	//echo 	$photoLink."<br>";
+	$titleLink = "{$_SERVER['PHP_SELF']}?sort=titleA";
+	//echo 	$titleLink."<br>";
+	$orderby="name ASC";
+	$sort = isset($_GET['sort']) ? $_GET['sort']: "nameA" ;
 
 	switch ($sort){
 		case 'nameA':
 			$orderby='name ASC';
-			$namelink = "{$_SERVER['PHP_SELF']}?sort=nameD";
-			break;
-		
+			$nameLink = "{$_SERVER['PHP_SELF']}?sort=nameD";
+			break;	
+
 		case 'nameD':
 			$orderby='name DESC';
-			$namelink = "{$_SERVER['PHP_SELF']}?sort=nameA";
+			$nameLink = "{$_SERVER['PHP_SELF']}?sort=nameA";
 			break;
 
 		case 'titleA':
 			$orderby='title ASC';
-			$titlelink = "{$_SERVER['PHP_SELF']}?sort=titleD";
+			$titleLink = "{$_SERVER['PHP_SELF']}?sort=titleD";
 			break;
 
 		case 'titleD':
 			$orderby='title DESC';
-			$titlelink = "{$_SERVER['PHP_SELF']}?sort=titleA";
+			$titleLink = "{$_SERVER['PHP_SELF']}?sort=titleA";
 			break;
 		
 
 		case 'messageA':
 			$orderby='messageContents ASC';
-			$messagelink = "{$_SERVER['PHP_SELF']}?sort=messageD";
+			$messageLink = "{$_SERVER['PHP_SELF']}?sort=messageD";
 			break;
 		
 		case 'messageD':
 			$orderby='messageContents DESC';
-			$messagelink = "{$_SERVER['PHP_SELF']}?sort=messageA";
+			$messageLink = "{$_SERVER['PHP_SELF']}?sort=messageA";
 			break;
 
 
 		case 'photoA':
 			$orderby='photo ASC';
-			$photolink = "{$_SERVER['PHP_SELF']}?sort=messageD";
+			$photoLink = "{$_SERVER['PHP_SELF']}?sort=messageD";
 			break;
 		
 		case 'photoD':
 			$orderby='photo DESC';
-			$photolink = "{$_SERVER['PHP_SELF']}?sort=messageA";
+			$photoLink = "{$_SERVER['PHP_SELF']}?sort=messageA";
 			break;
 
 		case 'typeA':
 			$orderby='type ASC';
-			$typelink = "{$_SERVER['PHP_SELF']}?sort=typeD";
+			$typeLink = "{$_SERVER['PHP_SELF']}?sort=typeD";
 			break;
 	
 		case 'typeD':
 			$orderby='type DESC';
-			$typelink = "{$_SERVER['PHP_SELF']}?sort=typeA";
+			$typeLink = "{$_SERVER['PHP_SELF']}?sort=typeA";
 			break;				
 		default:
 			break;
 	}
 
-	$links = array(
-					"name"=> $namelink,
-					"type"=> $typelink,
-					"photo"=> $photolink,
-					"message"=> $messagelink,
-					"title"=> $titlelink,
-					"orderby" => $orderby
-					);
+
+ 
+	
+	echo 	$orderby."<br>";
+	echo $_GET['sort']."<br>";
+	echo $sort;
+	$links = array("name"=> $nameLink, "type"=> $typeLink, "photo"=> $photoLink, "message"=> $messageLink, "title"=> $titleLink, "orderby" => $orderby);
+
+
+
+
 	return $links;
 }
 
