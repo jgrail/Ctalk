@@ -1,5 +1,5 @@
 <?php
-	//session_start();
+	session_start();
 	require 'dbconn.php';
 	$connection = connect_to_db("ClaremontTalk");
 
@@ -7,27 +7,60 @@
 	$type = $_POST['subject'];
 	$title = $_POST['title'];
 	$name = $_POST['name'];
-	$image = $_POST['img'];
+	// $image = $_POST['img'];
+	// if(!isset($POST['img'])){
+	// 	echo "hello";
+	// }
+	$date = date('Y-m-d H:i:s');
+
+	$emailed = 0;
 	
 	//TODO: look up userID from db using email from session variable
+	if(!isset($_SESSION['userID'])){
+		echo "userID is not set";
+	}	
+	$userID = $_SESSION['userID'];
 	
-	//$userID = $_SESSION['userID'];
-	$userID = 1;
+
 	//TODO "stateless design?"
 
+	//echo $messageContents;
+	//echo $type;
+	//echo $title;
+	//echo $name;
 	$approved = 0;
-	$query1 = "INSERT INTO Messages (name, messageContents, type, title, approved, userID, photo) VALUES (?,?,?,?,?,?,?)";
-	//add User ID into database
-	$insertMsg = $connection-> prepare($query1);
-	if ($insertMsg) {
-		
-		$insertMsg -> bind_param('ssssiib', $name, $messageContents, $type, $title, $approved, $userID, $image);
-	} else {
-		die("Error".$connection ->error);
-	}
+	//if (isset($POST['img'])){
+	//	$query1 = "INSERT INTO Messages (name, messageContents, type, title, approved, userID, emailed, dt, image) VALUES (?,?,?,?,?,?,?,?,?)";
+		//add User ID into database
+		// $insertMsg = $connection-> prepare($query1);
+		// if ($insertMsg) {
+			
+		// 	$insertMsg -> bind_param('ssssiiisb', $name, $messageContents, $type, $title, $approved, $userID, $emailed, $date, $image);
+		// 	//echo "here";
+		// 	mysqli_stmt_execute($insertMsg);
+	 //  		mysqli_stmt_close($insertMsg);	
+		// } else {
+		// 	die("Error".$connection ->error);
+		// }
+	//}
+	//else{
+		$query1 = "INSERT INTO Messages (name, messageContents, type, title, approved, userID, emailed, dt) VALUES (?,?,?,?,?,?,?,?)";
+		//add User ID into database
+		$insertMsg = $connection-> prepare($query1);
+		if ($insertMsg) {
+			
+			$insertMsg -> bind_param('ssssiiis', $name, $messageContents, $type, $title, $approved, $userID, $emailed, $date);
+			//echo "here";
+			mysqli_stmt_execute($insertMsg);
+	  		mysqli_stmt_close($insertMsg);	
+		} else {
+			die("Error".$connection ->error);
+		}
 
-	mysqli_stmt_execute($insertMsg);
-  	mysqli_stmt_close($insertMsg);	
+	//}
+	
+
+	
 ?>
 <!DOCTYPE html>
 <head>
