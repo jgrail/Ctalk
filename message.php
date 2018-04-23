@@ -3,7 +3,6 @@ require 'dbconn.php';
 
 ?>
 <?php
-echo "hello";
 if (isSet($_POST['submit'])) { //submitted form
 	echo "this far";
 	$message = ($_POST['message']);
@@ -21,16 +20,16 @@ if (isSet($_POST['submit'])) { //submitted form
 	}
 	mysqli_stmt_execute($insertMsg);
   	mysqli_stmt_close($insertMsg);	
-///////////////////////////
 }	
 ?>
 <!DOCTYPE html>
 <head>
+	<title>Create Message</title
 </head>
 <body>
 	<h2>Enter Your Message</h2>
 	<p>Please fill out the following fields to submit your message.</p>
-	<form method= "post" action='messageConfirmation.php' onsubmit= 'messageConfirmation.php'>
+	<form method= "post" action='messageConfirmation.php'>
 		<strong>Title:</strong><br>
 		<input type = "text" name = "title" required><br><br>
 		<strong>Subject:</strong><br>
@@ -51,7 +50,7 @@ if (isSet($_POST['submit'])) { //submitted form
 		<strong>Message:</strong><br>
 		<textarea rows = "7" cols="50" name = "message" required></textarea><br>
 		<!--<input type = "text" rows = "10" name = "message" required><br>-->
-		<input type="file" name="img" accept="image/*" value = "Upload Image>
+		<input type="file" name="img" accept="image/*" value = "Upload Image">
 		<input type = "submit" value = "Submit Message">
 	</form>
 </body>
