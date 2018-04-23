@@ -15,10 +15,10 @@
 	$userID = 1;
 	//TODO "stateless design?"
 
-	echo $messageContents;
-	echo $type;
-	echo $title;
-	echo $name;
+	//echo $messageContents;
+	//echo $type;
+	//echo $title;
+	//echo $name;
 	$approved = 0;
 	$query1 = "INSERT INTO Messages (name, messageContents, type, title, approved, userID, photo) VALUES (?,?,?,?,?,?,?)";
 	//add User ID into database
@@ -26,26 +26,27 @@
 	if ($insertMsg) {
 		
 		$insertMsg -> bind_param('ssssiib', $name, $messageContents, $type, $title, $approved, $userID, $image);
-		echo "here";
+		//echo "here";
 	} else {
 		die("Error".$connection ->error);
 	}
-	echo "HELLO!";
+	//echo "HELLO!";
 
 	mysqli_stmt_execute($insertMsg);
   	mysqli_stmt_close($insertMsg);	
 ?>
 <!DOCTYPE html>
 <head>
+	<title>Message Confirmation</title>
 </head>
 <body>
 	<?php 
-	echo $_POST['subject'];
+	//echo $_POST['subject'];
 	?>
 	<h2>Your Message Has Been Recorded</h2>
 	<p>Thank you for posting your message! It will be distributed on Claremont Talk once it is validated by our administrators.
 	</p>
-	<a href="viewMessages.php">View Message Board</a><br>
-	<a href ="message.php">Post New Message</a>
+	<button type = "button" onclick="window.location.href='viewMessages.php'">View Message Board</button>
+	<button type = "button" onclick="window.location.href='messages.php'">Post New Message</button>
 </body>
 </html>
