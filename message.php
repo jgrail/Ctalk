@@ -1,34 +1,17 @@
 <?php
 require 'dbconn.php';
+?>
 
-?>
-<?php
-if (isSet($_POST['submit'])) { //submitted form
-	echo "this far";
-	$message = ($_POST['message']);
-	$type = $_POST['subject'];
-	$title = $_POST['title'];
-	echo $message;
-	$query1 = "INSERT INTO Message (messageConents, type, title, approved) VALUES (?,?,?,?)";
-	//add User ID into database
-	$insertMsg = $connection->prepare($query1);
-	if ($insertMsg = $connection ->prepare($query1)) {
-		$insertMsg -> bind_param('ssss', $message, $type, $title, '0');
-		echo "here";
-	} else {
-		die("Error".$connection ->error);
-	}
-	mysqli_stmt_execute($insertMsg);
-  	mysqli_stmt_close($insertMsg);	
-}	
-?>
 <!DOCTYPE html>
 <head>
 	<title>Create Message</title>
+	<link rel="stylesheet" href="CTalkStyle.css">
 </head>
-<body>
+<body  class = "msg" style = "background-color: #ccf6ff">
 	<h2>Enter Your Message</h2>
 	<p>Please fill out the following fields to submit your message.</p>
+	<img src = "http://www.kgi.edu/Images/About_KGI/400x300_Claremont-Colleges.jpg" style= "float:right">
+	
 	<form method= "post" action='messageConfirmation.php'>
 		<strong>Title:</strong><br>
 		<input type = "text" name = "title" required><br><br>
@@ -51,7 +34,7 @@ if (isSet($_POST['submit'])) { //submitted form
 		<textarea rows = "7" cols="50" name = "message" required></textarea><br>
 		<!--<input type = "text" rows = "10" name = "message" required><br>-->
 		<input type="file" name="img" accept="image/*" value = "Upload Image">
-		<input type = "submit" value = "Submit Message">
+		<input type = "submit" class = "button" value = "Submit Message">
 	</form>
 </body>
 </html>
