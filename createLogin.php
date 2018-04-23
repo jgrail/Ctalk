@@ -1,9 +1,11 @@
-
+<!DOCTYPE html>
 <html>
+  <head>
+    <title>Sign Up</title
 <link rel = "stylesheet"
 type = "text/css"
 href = "createLogin.css" />
-
+  </head>
 
   <div class="container">
     <h1>Sign Up for ClaremontTalk!</h1>
