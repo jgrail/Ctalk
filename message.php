@@ -24,7 +24,7 @@ if (isSet($_POST['submit'])) { //submitted form
 ?>
 <!DOCTYPE html>
 <head>
-	<title>Create Message</title
+	<title>Create Message</title>
 </head>
 <body>
 	<h2>Enter Your Message</h2>
