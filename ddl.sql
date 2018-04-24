@@ -28,6 +28,7 @@ CREATE TABLE Messages(
   name VARCHAR(256) NOT NULL,  
   /*photo BLOB,*/
   dt DATETIME NOT NULL,
+  emailed INT UNSIGNED NOT NULL,
   FOREIGN KEY(userID) REFERENCES USER(userID)
 
 ); 
