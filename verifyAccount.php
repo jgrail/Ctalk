@@ -3,10 +3,10 @@
 // Define database connection details via constants 
  require'dbconn.php';
 $conn = connect_to_db("ClaremontTalk");
-$email = $_POST['email'];
-$psw = $_POST['psw-repeat'];
-$pswRepeat = $_POST['psw'];
-$school = $_POST['school'];
+$email = $conn-> real_escape_string($_POST['email']);
+$psw = $conn-> real_escape_string($_POST['psw-repeat']);
+$pswRepeat = $conn-> real_escape_string($_POST['psw']);
+$school = $conn-> real_escape_string($_POST['school']);
 $emailErr = $passwordErr = "";
 $admin = 0;
 // check if name only contains letters and whitespace
@@ -21,15 +21,20 @@ $admin = 0;
       echo $pswRepeat;
       $passwordErr = "invalid password"; 
     }
-
+ 
 if(strlen($emailErr)>0||strlen($passwordErr)>0) {
+  
   header("Location: createLogin.php");
 }
 
 else {
+$email = $conn-> real_escape_string($email);
+$psw = $conn-> real_escape_string($psw);
+
   $sql = "SELECT count(*) as 'c' FROM User WHERE email = '$email'";
   $result = $conn->query($sql)->fetch_object()->c;
   if(($result==0)){
+
   $insertUser = $conn -> prepare("INSERT INTO User (email, password, school, admin) VALUES(?,?,?,?)");
   $insertUser -> bind_param("sssi",$email,$psw,$school,$admin);
   $insertUser->execute();
