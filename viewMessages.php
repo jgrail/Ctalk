@@ -16,7 +16,7 @@ color: black;
 background-size: 100%;
 background-color:  #d7dfe0;
 color: dodgerblue;
-     text-shadow: 2px 2px 0px #9fb3b5; /* FF3.5+, Opera 9+, Saf1+, Chrome, IE10 */
+     text-shadow: 1px 1px 0px #9fb3b5; /* FF3.5+, Opera 9+, Saf1+, Chrome, IE10 */
 
 }
 th{ 
