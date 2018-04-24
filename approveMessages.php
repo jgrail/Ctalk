@@ -3,19 +3,42 @@
 ?>
 
 
+<!--TODO: Sort by Message ID?-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <title>Pageable Displays</title>
     <style>
+        h1{
+    text-align: center;
+color: black;
+background-size: 100%;
+background-color:  #d7dfe0;
+color: dodgerblue;
+     text-shadow: 1px 1px 0px #9fb3b5; /* FF3.5+, Opera 9+, Saf1+, Chrome, IE10 */
+}
+th{ 
+    border: 1px solid;
+}
+body {
+    background-color:  #d7dfe0;
+}
         tr:nth-child(even) {
-            background-color: #f1f1f1;
+            background-color: #9fb3b5;
         }
+table{ 
+margin-left: auto;
+margin-right: auto;
+height:95%;width:100%; 
+}
     </style>
         
 </head>
+    <h1>ClaremontTalk</h1> 
 <body>
+
 
 
 <?php
@@ -42,7 +65,7 @@
 
 <?php
 function createDataTable($start, $itemsPerPage, $links) {
-    $qry = "SELECT title, name, messageContents, type FROM Messages 
+    $qry = "SELECT title, name, messageContents, type, messageID FROM Messages 
                 WHERE approved = 0 
                 ORDER BY {$links['orderby']}
                 LIMIT $start, $itemsPerPage ";
@@ -56,6 +79,7 @@ function createDataTable($start, $itemsPerPage, $links) {
                         <th class=\"name\"><a href={$links['name']}>Name</a></th>
                         <th class=\"messageContents\"><a href={$links['message']}>Message</a></th>
                         <th class=\"type\"><a href={$links['type']}>Type</a></th>
+                        <th class=\"messageID\"><a href={$links['messageID']}>Message ID</a></th>
                          
                         
                         <th class=\"approve\">Approve</th>
@@ -73,7 +97,7 @@ function createDataTable($start, $itemsPerPage, $links) {
                         <td>$name</td>
                         <td>$messageContents</td>
                         <td>$type</td>
-                        
+                        <td>$messageID</td>
                         <td><input type='checkbox' name='approved'></td>
 
                     </tr>\n";
@@ -81,8 +105,9 @@ function createDataTable($start, $itemsPerPage, $links) {
         }
 
         echo "</table>
-                <input type='submit' value='Approve Messages'>
-            </form>\n";
+                <input type='submit' value='Approve and Email'>
+            </form>\n
+            <button type = 'button' class='button' onclick='window.location.href=\"viewMessages.php\"'>Exit</button>";
     }
 
 
@@ -207,7 +232,7 @@ function createSortLinks(){
 function createPageLinks($start, $pages, $itemsPerPage, $sort){
     $thispage = "{$_SERVER['PHP_SELF']}";
     $sort = isset($_GET['sort']) ? $_GET['sort']: "";
-    echo "This page is $thispage";
+    //echo "This page is $thispage";
     
     
     // creating page links
