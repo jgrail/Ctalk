@@ -47,7 +47,19 @@ height:95%;width:100%;
 
 <?php
 	
-	//TODO:
+	$connection =  connect_to_db("ClaremontTalk");
+	
+	$userID = $_SESSION['userID'];
+
+	$query = "SELECT admin FROM User WHERE userID = '$userID'";
+	
+	$result = perform_query($connection, $query);
+
+	if($result = 1){
+		echo "<button type = 'button' class='button' onclick='window.location.href=\"approveMessages.php\"'>Approve Messages</button>";
+	}
+
+	disconnect_from_db($connection, $result);
 	//admin button
 	//query the userID for admin, if = 1, display button to go to admin view 
 	
