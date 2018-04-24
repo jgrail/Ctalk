@@ -21,6 +21,11 @@
 
 <?php
 	
+	//TODO:
+	//admin button
+	//query the userID for admin, if = 1, display button to go to admin view 
+
+
 	// pagination support
 	$itemsPerPage=10;
 	// figure out how many pages
