@@ -10,9 +10,34 @@
 	<meta charset="utf-8" />
 	<title>Pageable Displays</title>
 	<style>
+		h1{
+	text-align: center;
+color: black;
+background-size: 100%;
+background-color:  #d7dfe0;
+color: dodgerblue;
+     text-shadow: 2px 2px 0px #9fb3b5; /* FF3.5+, Opera 9+, Saf1+, Chrome, IE10 */
+
+}
+th{ 
+	border: 1px solid;
+}
+
+body {
+    background-color:  #d7dfe0;
+}
 		tr:nth-child(even) {
-			background-color: #f1f1f1;
+			background-color: #9fb3b5;
 		}
+table{ 
+
+margin-left: auto;
+margin-right: auto;
+
+height:95%;width:100%; 
+
+
+}
 	</style>
 		
 </head>
@@ -117,8 +142,6 @@ function createSortLinks(){
 	//echo $typeLink."<br>";
 	$messageLink = "{$_SERVER['PHP_SELF']}?sort=messageA"; 
 	//echo $messageLink."<br>";
-	$photoLink = "{$_SERVER['PHP_SELF']}?sort=photoA";  
-	//echo 	$photoLink."<br>";
 	$titleLink = "{$_SERVER['PHP_SELF']}?sort=titleA";
 	//echo 	$titleLink."<br>";
 	$orderby="name ASC";
@@ -156,17 +179,6 @@ function createSortLinks(){
 			$messageLink = "{$_SERVER['PHP_SELF']}?sort=messageA";
 			break;
 
-
-		case 'photoA':
-			$orderby='photo ASC';
-			$photoLink = "{$_SERVER['PHP_SELF']}?sort=messageD";
-			break;
-		
-		case 'photoD':
-			$orderby='photo DESC';
-			$photoLink = "{$_SERVER['PHP_SELF']}?sort=messageA";
-			break;
-
 		case 'typeA':
 			$orderby='type ASC';
 			$typeLink = "{$_SERVER['PHP_SELF']}?sort=typeD";
@@ -186,7 +198,7 @@ function createSortLinks(){
 	echo 	$orderby."<br>";
 	echo $_GET['sort']."<br>";
 	echo $sort;
-	$links = array("name"=> $nameLink, "type"=> $typeLink, "photo"=> $photoLink, "message"=> $messageLink, "title"=> $titleLink, "orderby" => $orderby);
+	$links = array("name"=> $nameLink, "type"=> $typeLink, "message"=> $messageLink, "title"=> $titleLink, "orderby" => $orderby);
 
 
 
