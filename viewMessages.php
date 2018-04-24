@@ -24,7 +24,7 @@
 	//TODO:
 	//admin button
 	//query the userID for admin, if = 1, display button to go to admin view 
-
+	
 
 	// pagination support
 	$itemsPerPage=10;
@@ -43,7 +43,8 @@
 
 <?php
 function createDataTable($start, $itemsPerPage, $links) {
-	$qry = "SELECT title, name, messageContents, type, photo FROM Messages 
+	$qry = "SELECT title, name, messageContents, type FROM Messages
+				WHERE approved = 1
 				ORDER BY {$links['orderby']}
 				LIMIT $start, $itemsPerPage ";
 
@@ -54,9 +55,9 @@ function createDataTable($start, $itemsPerPage, $links) {
 					<th class=\"name\"><a href={$links['name']}>Name</a></th>
 					<th class=\"messageContents\"><a href={$links['message']}>Message</a></th>
 					<th class=\"type\"><a href={$links['type']}>Type</a></th>
-					<th class=\"photo\"><a href={$links['photo']}>Photo</a></th> 
+					
 				</tr> \n ";
-
+					//<th class=\"photo\"><a href={$links['photo']}>Photo</a></th>
 
 	$dbc =  connect_to_db("ClaremontTalk");
 	$result = perform_query($dbc, $qry);
@@ -68,8 +69,9 @@ function createDataTable($start, $itemsPerPage, $links) {
 					<td>$name</td>
 					<td>$messageContents</td>
 					<td>$type</td>
-					<td>$photo</td>
+					
 				</tr>\n";
+					//<td>$photo</td>
 	}
 	echo "</table>\n";
 }
@@ -83,7 +85,7 @@ function findpages($itemsPerPage){
 	} else {
 	
 		// starting new, so get it from the database
-		$qry="SELECT COUNT(messageId) as count from Messages;";
+		$qry="SELECT COUNT(messageId) as count from Messages where approved=1;";
 		
 		$dbc =  connect_to_db( "ClaremontTalk" );
 		$result = perform_query($dbc, $qry);
