@@ -65,7 +65,7 @@ color: dodgerblue;
 	    <ul class="nav"> 
   <li class="navigation"><a href='viewMessages.php'>View Message Board</a></li>
   <li class='navigation'><a href='message.php'>Create Message</a></li>
-   <li class='navigation'><a href='welcome.php'>Logout</a></li>
+   <li class='navigation'><a href='index.php'>Logout</a></li>
 </ul>
 	<h2>Enter Your Message</h2>
 	<p>Please fill out the following fields to submit your message.</p>
