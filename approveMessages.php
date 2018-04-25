@@ -1,5 +1,6 @@
 <?php
     include('dbconn.php');
+    session_start();
 ?>
 
 
@@ -8,9 +9,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel = "stylesheet" type = "text/css" href = "CTalkStyle.css" />
     <meta charset="utf-8" />
     <title>Pageable Displays</title>
     <style>
+    body{
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-right: 50px;
+    margin-left: 50px;
+    font-family: "arial";
+     background-color:  #d7dfe0;
+    }
         h1{
     text-align: center;
 color: black;
@@ -21,10 +31,9 @@ color: dodgerblue;
 }
 th{ 
     border: 1px solid;
+    background-color: #3cc453;
 }
-body {
-    background-color:  #d7dfe0;
-}
+
         tr:nth-child(even) {
             background-color: #9fb3b5;
         }
@@ -33,12 +42,65 @@ margin-left: auto;
 margin-right: auto;
 height:95%;width:100%; 
 }
-    </style>
+  h1{
+  text-align: center;
+color: black;
+background-size: 100%;
+background-color:  #d7dfe0;
+color: dodgerblue;
+     text-shadow: 1px 1px 0px #9fb3b5; /* FF3.5+, Opera 9+, Saf1+, Chrome, IE10 */
+}
+td:hover {background-color: white;}
+ .nav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+.navigation {
+    float: left;
+}
+.navigation a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.navigation a:hover {
+    background-color: dodgerblue;
+}
+.title {
+    width:150px;
+}
+.name{
+    width:150px;
+}
+.type{
+    width:150px;
+}
+/*.messageContents{
+   
+}*/
+.approve{
+    width:75px;
+}    
+.messageID{
+    width:75px;
+}   
+.delete{
+    width:75px;
+} 
+
+</style>
         
 </head>
-    <h1>ClaremontTalk</h1> 
-<body>
-
+    <h1 style="background-color: #ccf6ff">ClaremontTalk</h1> 
+<body style="background-color: #ccf6ff">
+ClaremontTalk</h1> 
 
 
 <?php
@@ -110,7 +172,12 @@ function createDataTable($start, $itemsPerPage, $links) {
                 LIMIT $start, $itemsPerPage ";
 
         
-    echo  "
+    echo  "<h1 style = 'background-color: #ccf6ff'>ClaremontTalk</h1> 
+    <ul class='nav'> 
+  <li class='navigation'><a href='viewMessages.php'>View Message Board</a></li>
+  <li class='navigation'><a href='message.php'>Create Message</a></li>
+   <li class='navigation'><a href='welcome.php'>Logout</a></li>
+</ul>
         <form method = 'post' action='approveMessages.php'>
             <table class=\"fixed\">
                     <tr>
