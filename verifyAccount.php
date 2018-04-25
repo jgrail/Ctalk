@@ -36,7 +36,8 @@ $psw = $conn-> real_escape_string($psw);
   if(($result==0)){
 
   $insertUser = $conn -> prepare("INSERT INTO User (email, password, school, admin) VALUES(?,?,?,?)");
-  $insertUser -> bind_param("sssi",$email,$psw,$school,$admin);
+   $hashedPsw = crypt($psw,"hashbrown");
+  $insertUser -> bind_param("sssi",$email,$hashedPsw,$school,$admin);
   $insertUser->execute();
   $emailErr = $passwordErr = "";
   echo "VALID USER";
