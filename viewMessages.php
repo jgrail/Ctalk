@@ -10,41 +10,86 @@ session.start();
 <head>
 	<meta charset="utf-8" />
 	<title>Pageable Displays</title>
-	<style>
-		h1{
-	text-align: center;
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <style>
+   body{
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-right: 50px;
+    margin-left: 50px;
+    font-family: "arial";
+     background-color:  #d7dfe0;
+    }
+    h1{
+  text-align: center;
 color: black;
 background-size: 100%;
 background-color:  #d7dfe0;
 color: dodgerblue;
      text-shadow: 1px 1px 0px #9fb3b5; /* FF3.5+, Opera 9+, Saf1+, Chrome, IE10 */
-
 }
 th{ 
-	border: 1px solid;
+    border: 1px solid;
+    background-color: #3cc453;
 }
 
-body {
-    background-color:  #d7dfe0;
-}
-		tr:nth-child(even) {
-			background-color: #9fb3b5;
-		}
+        tr:nth-child(even) {
+            background-color: #9fb3b5;
+        }
 table{ 
-
 margin-left: auto;
 margin-right: auto;
-
 height:95%;width:100%; 
-
-
 }
-	</style>
+
+td:hover {background-color: white;}
+
+.nav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+.navigation {
+    float: left;
+}
+.navigation a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.navigation a:hover {
+    background-color: dodgerblue;
+}
+.title {
+    width:150px;
+}
+.name{
+    width:150px;
+}
+.type{
+    width:150px;
+}
+.approve{
+    width:75px;
+}    
+.messageID{
+    width:75px;
+}   
+.delete{
+    width:75px;
+} 
+
+  </style>
 		
 </head>
-	<h1>ClaremontTalk</h1> 
-<body>
-
+	<body style = "background-color: #ccf6ff">
+  <h1 style = "background-color: #ccf6ff">ClaremontTalk</h1> 
 
 <?php
 	
@@ -56,9 +101,7 @@ height:95%;width:100%;
 	$admin = perform_query($connection, $query)->fetch_object()->a;
 
 
-	if($admin == 1){
-		echo "<button type = 'button' class='button' onclick='window.location.href=\"approveMessages.php\"'>Approve Messages</button>";
-	}
+	
 
 	disconnect_from_db($connection, $result);
 	//admin button
@@ -86,17 +129,22 @@ function createDataTable($start, $itemsPerPage, $links) {
 				WHERE approved = 1
 				ORDER BY {$links['orderby']}
 				LIMIT $start, $itemsPerPage ";
-
-		
-	echo  "<table class=\"fixed\">
-				<tr>
-					<th class=\"title\"> <a href={$links['title']}> Title</a></th>
-					<th class=\"name\"><a href={$links['name']}>Name</a></th>
-					<th class=\"messageContents\"><a href={$links['message']}>Message</a></th>
-					<th class=\"type\"><a href={$links['type']}>Type</a></th>
-					
-				</tr> \n ";
-					//<th class=\"photo\"><a href={$links['photo']}>Photo</a></th>
+	 echo  "<ul class='nav'> 
+  <li class='navigation'><a href='viewMessages.php'>View Message Board</a></li>
+  <li class='navigation'><a href='message.php'>Create Message</a></li>";
+  if($admin = 1){
+    echo "<li class='navigation'><a href='approveMessages.php'>Approve Messages</a></li>";
+  }
+   echo "<li class='navigation'><a href='welcome.php'>Logout</a></li>
+</ul> <br>
+	<table class=\"fixed\">
+        <tr>
+          <th class=\"title\"> <a href={$links['title']}> Title</a></th>
+          <th class=\"name\"><a href={$links['name']}>Name</a></th>
+          <th class=\"messageContents\"><a href={$links['message']}>Message</a></th>
+          <th class=\"type\"><a href={$links['type']}>Type</a></th>
+          
+        </tr> \n ";
 
 	$dbc =  connect_to_db("ClaremontTalk");
 	$result = perform_query($dbc, $qry);
