@@ -51,11 +51,11 @@ height:95%;width:100%;
 	
 	$userID = $_SESSION['userID'];
 
-	$query = "SELECT admin FROM User WHERE userID = '$userID'";
-	
-	$result = perform_query($connection, $query);
+	$query = "SELECT admin as 'a' FROM User WHERE userId = '$userID'";
+	$admin = perform_query($connection, $query)->fetch_object()->a;
 
-	if($result = 1){
+
+	if($admin == 1){
 		echo "<button type = 'button' class='button' onclick='window.location.href=\"approveMessages.php\"'>Approve Messages</button>";
 	}
 
