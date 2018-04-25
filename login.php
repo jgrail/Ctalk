@@ -47,7 +47,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $query = "SELECT userID FROM User where email=? AND password=?";
         $selectUser = $connection -> prepare($query);
         echo $connection->error;
-        $selectUser -> bind_param("ss", $email, $password);
+        $hashedPassword = crypt($password,"hashbrown");
+        $selectUser -> bind_param("ss", $email, $hashedPassword);
 
         mysqli_stmt_execute($selectUser);
         $selectUser -> bind_result($userID);
