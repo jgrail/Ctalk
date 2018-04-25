@@ -176,7 +176,7 @@ function createDataTable($start, $itemsPerPage, $links) {
     <ul class='nav'> 
   <li class='navigation'><a href='viewMessages.php'>View Message Board</a></li>
   <li class='navigation'><a href='message.php'>Create Message</a></li>
-   <li class='navigation'><a href='welcome.php'>Logout</a></li>
+   <li class='navigation'><a href='index.php'>Logout</a></li>
 </ul>
         <form method = 'post' action='approveMessages.php'>
             <table class=\"fixed\">
