@@ -1,3 +1,8 @@
+<?php
+session_unset();  // remove all session variables
+session_destroy();
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
