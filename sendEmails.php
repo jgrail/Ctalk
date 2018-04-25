@@ -1,6 +1,6 @@
 
 <?php
-
+session.start();
 require("dbconn.php");
 
     echo "Email was sent:";
