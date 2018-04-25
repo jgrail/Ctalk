@@ -135,7 +135,7 @@ function createDataTable($start, $itemsPerPage, $links) {
   if($admin = 1){
     echo "<li class='navigation'><a href='approveMessages.php'>Approve Messages</a></li>";
   }
-   echo "<li class='navigation'><a href='welcome.php'>Logout</a></li>
+   echo "<li class='navigation'><a href='index.php'>Logout</a></li>
 </ul> <br>
 	<table class=\"fixed\">
         <tr>
