@@ -205,12 +205,6 @@ function createSortLinks(){
 			break;
 	}
 
-
- 
-	
-	echo 	$orderby."<br>";
-	echo $_GET['sort']."<br>";
-	echo $sort;
 	$links = array("name"=> $nameLink, "type"=> $typeLink, "message"=> $messageLink, "title"=> $titleLink, "orderby" => $orderby);
 
 
