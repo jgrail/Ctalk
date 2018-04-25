@@ -6,8 +6,10 @@ require("dbconn.php");
     echo "Email was sent:";
     echo "<br>";
     echo "<br>";
-    echo "ClaremontTalk: "
+    echo "ClaremontTalk: ";
     $to = "claremont@talk.com";
+
+
 
     $subject = "New in ClaremontTalk: ";
 
@@ -15,7 +17,7 @@ require("dbconn.php");
 
     $headers  = 'MIME-Version: 1.0' . "\r\n";
     $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-    $headers .= "From: claremont3@talk.com";
+    $headers .= "From: claremont@talk.com";
 
 
 
@@ -77,9 +79,15 @@ require("dbconn.php");
 
     $txt .= "</body></html>";
 
+    $query = "SELECT email FROM User";
+    $result = perform_query($connection, $query);
+    while ( $row = mysqli_fetch_array( $result, MYSQLI_ASSOC ) ) {
+        $email = $row['email'];
+        $to = "$email";
+        mail($to,$subject,$txt,$headers);
+    }
 
-
-    mail($to,$subject,$txt,$headers);
+    
 
 
 ?>
@@ -94,3 +102,4 @@ require("dbconn.php");
 
 
 </body>
+</html>
