@@ -45,7 +45,7 @@ height:95%;width:100%;
     
     // TODO:
     // verify admin
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+   if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
         
         if(isset($_POST['approved'])){
@@ -54,24 +54,27 @@ height:95%;width:100%;
 
             foreach ($_POST['approved'] as $key => $messageID){
             
-                echo $messageID;
                 $query = "UPDATE Messages SET approved = 1 WHERE messageID = '$messageID'";
                 $result = perform_query($connection, $query);
 
-            }
-            disconnect_from_db($connection, $result);
 
-        }
+                $qry = "SELECT userId  as 'a' FROM Messages WHERE messageID = '$messageID'";
+                $user = perform_query($connection, $qry)->fetch_object()->a;;
+                echo $user;
 
-        if(isset($_POST['delete'])){
+                $query = "SELECT email  as 'a' FROM User WHERE userId = '$user'";
+                $email = perform_query($connection, $query)->fetch_object()->a;
+                echo $email;
 
-            $connection = connect_to_db("ClaremontTalk");
+                $to = $email;
+                $subject = "Message Approved";
+                $txt = $message = "Your message has been approved.";
+                $headers = "From: claremont@talk.com";
+                mail($to,$subject,$txt,$headers);
 
-            foreach ($_POST['delete'] as $key => $messageID){
-            
-                echo $messageID;
-                $query = "DELETE FROM Messages WHERE messageID = '$messageID'";
+                $query = "UPDATE Messages SET emailed = 1 WHERE messageID = '$messageID'";
                 $result = perform_query($connection, $query);
+
 
             }
             disconnect_from_db($connection, $result);
