@@ -2,6 +2,7 @@
 <?php 
 // Define database connection details via constants 
  require'dbconn.php';
+session.start();
 $conn = connect_to_db("ClaremontTalk");
 $email = $conn-> real_escape_string($_POST['email']);
 $psw = $conn-> real_escape_string($_POST['psw-repeat']);
