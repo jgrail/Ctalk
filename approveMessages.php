@@ -43,9 +43,45 @@ height:95%;width:100%;
 
 <?php
     
-    //TODO:
-    //admin button
-    //query the userID for admin, if = 1, display button to go to admin view 
+    // TODO:
+    // verify admin
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        
+        
+        if(isset($_POST['approved'])){
+
+            $connection = connect_to_db("ClaremontTalk");
+
+            foreach ($_POST['approved'] as $key => $messageID){
+            
+                echo $messageID;
+                $query = "UPDATE Messages SET approved = 1 WHERE messageID = '$messageID'";
+                $result = perform_query($connection, $query);
+
+            }
+            disconnect_from_db($connection, $result);
+
+        }
+
+        if(isset($_POST['delete'])){
+
+            $connection = connect_to_db("ClaremontTalk");
+
+            foreach ($_POST['delete'] as $key => $messageID){
+            
+                echo $messageID;
+                $query = "DELETE FROM Messages WHERE messageID = '$messageID'";
+                $result = perform_query($connection, $query);
+
+            }
+            disconnect_from_db($connection, $result);
+
+        }
+
+        header('Location: sendEmails.php');
+        
+    }
+
 
 
     // pagination support
@@ -72,7 +108,7 @@ function createDataTable($start, $itemsPerPage, $links) {
 
         
     echo  "
-        <form action='approveMessages.php'>
+        <form method = 'post' action='approveMessages.php'>
             <table class=\"fixed\">
                     <tr>
                         <th class=\"title\"> <a href={$links['title']}> Title</a></th>
@@ -83,6 +119,7 @@ function createDataTable($start, $itemsPerPage, $links) {
                          
                         
                         <th class=\"approve\">Approve</th>
+                        <th class=\"delete\">Delete</th>
                     </tr> \n ";
                     //<th class=\"photo\"><a href={$links['photo']}>Photo</a></th>
 
@@ -98,14 +135,15 @@ function createDataTable($start, $itemsPerPage, $links) {
                         <td>$messageContents</td>
                         <td>$type</td>
                         <td>$messageID</td>
-                        <td><input type='checkbox' name='approved'></td>
+                        <td><input type='checkbox' name='approved[]' value=$messageID></td>
+                        <td><input type='checkbox' name='delete[]' value=$messageID></td>
 
                     </tr>\n";
                     //<td>$photo</td>
         }
 
         echo "</table>
-                <input type='submit' value='Approve and Email'>
+                <span>Approve, Delete, and Email: </span><input type='submit' value='Go'>
             </form>\n
             <button type = 'button' class='button' onclick='window.location.href=\"viewMessages.php\"'>Exit</button>";
     }
@@ -191,15 +229,15 @@ function createSortLinks(){
             break;
 
 
-        case 'photoA':
-            $orderby='photo ASC';
-            $photoLink = "{$_SERVER['PHP_SELF']}?sort=messageD";
-            break;
+        // case 'photoA':
+        //     $orderby='photo ASC';
+        //     $photoLink = "{$_SERVER['PHP_SELF']}?sort=messageD";
+        //     break;
         
-        case 'photoD':
-            $orderby='photo DESC';
-            $photoLink = "{$_SERVER['PHP_SELF']}?sort=messageA";
-            break;
+        // case 'photoD':
+        //     $orderby='photo DESC';
+        //     $photoLink = "{$_SERVER['PHP_SELF']}?sort=messageA";
+        //     break;
 
         case 'typeA':
             $orderby='type ASC';
@@ -217,9 +255,9 @@ function createSortLinks(){
 
  
     
-    echo    $orderby."<br>";
-    echo $_GET['sort']."<br>";
-    echo $sort;
+    //echo    $orderby."<br>";
+    //echo $_GET['sort']."<br>";
+    //echo $sort;
     $links = array("name"=> $nameLink, "type"=> $typeLink, "photo"=> $photoLink, "message"=> $messageLink, "title"=> $titleLink, "orderby" => $orderby);
 
 
