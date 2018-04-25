@@ -73,6 +73,6 @@
 	<p>Thank you for posting your message! It will be distributed on Claremont Talk once it is validated by our administrators.
 	</p>
 	<button type = "button" class="button" onclick="window.location.href='viewMessages.php'">View Message Board</button>
-	<button type = "button" class="button" onclick="window.location.href='messages.php'">Post New Message</button>
+	<button type = "button" class="button" onclick="window.location.href='message.php'">Post New Message</button>
 </body>
 </html>
