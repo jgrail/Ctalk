@@ -123,7 +123,7 @@ function createDataTable($start, $itemsPerPage, $links) {
   echo  "<ul class='nav'> 
   <li class='navigation'><a href='viewMessages.php'>View Messages</a></li>
   <li class='navigation'><a href='message.php'>Create Message</a></li>";
-  if($admin = 1){ //if person is an admin
+  if($admin == 1){ //if person is an admin
     echo "<li class='navigation'><a href='approveMessages.php'>Approve Messages</a></li>";
   }
   echo "<li class='navigation'><a href='index.php'>Logout</a></li>
