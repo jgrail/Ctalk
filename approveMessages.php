@@ -82,6 +82,10 @@ td:hover {background-color: white;}
 .type{
     width:150px;
 }
+.date{
+    width:150px;
+}
+}
 /*.messageContents{
    
 }*/
@@ -98,9 +102,9 @@ td:hover {background-color: white;}
 </style>
         
 </head>
-    <h1 style="background-color: #ccf6ff">ClaremontTalk</h1> 
+    
 <body style="background-color: #ccf6ff">
-ClaremontTalk</h1> 
+</h1> 
 
 
 <?php
@@ -166,7 +170,7 @@ ClaremontTalk</h1>
 
 <?php
 function createDataTable($start, $itemsPerPage, $links) {
-    $qry = "SELECT title, name, messageContents, type, messageID FROM Messages 
+    $qry = "SELECT title, name, messageContents, type, dt, messageID FROM Messages 
                 WHERE approved = 0 
                 ORDER BY {$links['orderby']}
                 LIMIT $start, $itemsPerPage ";
@@ -187,7 +191,7 @@ function createDataTable($start, $itemsPerPage, $links) {
                         <th class=\"type\"><a href={$links['type']}>Type</a></th>
                         <th class=\"messageID\"><a href={$links['messageID']}>Message ID</a></th>
                          
-                        
+                        <th class=\"date\"><a href={$links['date']}>Date</a></th>
                         <th class=\"approve\">Approve</th>
                         <th class=\"delete\">Delete</th>
                     </tr> \n ";
@@ -204,6 +208,7 @@ function createDataTable($start, $itemsPerPage, $links) {
                         <td>$name</td>
                         <td>$messageContents</td>
                         <td>$type</td>
+                        <td>$dt</td>
                         <td>$messageID</td>
                         <td><input type='checkbox' name='approved[]' value=$messageID></td>
                         <td><input type='checkbox' name='delete[]' value=$messageID></td>
