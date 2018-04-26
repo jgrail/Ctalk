@@ -72,6 +72,9 @@ session_start();
   .type{
     width:150px;
   }
+  .date{
+    width:150px;
+  }
   .approve{
     width:75px;
   }    
@@ -112,10 +115,11 @@ session_start();
 
 <?php
 function createDataTable($start, $itemsPerPage, $links) {
-	$qry = "SELECT title, name, messageContents, type FROM Messages
+	$qry = "SELECT title, name, messageContents, dt, type FROM Messages
   WHERE approved = 1
   ORDER BY {$links['orderby']}
   LIMIT $start, $itemsPerPage ";
+
   echo  "<ul class='nav'> 
   <li class='navigation'><a href='viewMessages.php'>View Messages</a></li>
   <li class='navigation'><a href='message.php'>Create Message</a></li>";
@@ -130,6 +134,7 @@ function createDataTable($start, $itemsPerPage, $links) {
   <th class=\"name\"><a href={$links['name']}>Name</a></th>
   <th class=\"messageContents\"><a href={$links['message']}>Message</a></th>
   <th class=\"type\"><a href={$links['type']}>Type</a></th>
+  <th class=\"date\"><a href={$links['date']}>Date</a></th>
 
   </tr> \n ";
 
@@ -143,6 +148,7 @@ function createDataTable($start, $itemsPerPage, $links) {
     <td>$name</td>
     <td>$messageContents</td>
     <td>$type</td>
+    <td>$dt</td>
 
     </tr>\n";
   }
