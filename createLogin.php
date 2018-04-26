@@ -13,7 +13,7 @@ href = "createLogin.css" />
   <div class="container">
     <h1>Sign Up for ClaremontTalk!</h1>
     <p>Please fill in this form to create an account. you'll then be able to see and post messages</p>
-<form action="verifyAccount.php" method = "post" style="border:1px solid cyan">
+<form action="verifyAccount.php" method = "post">
     <label for="email"><b>Email</b></label>
     <input type="text" placeholder="Enter Email" name="email" required>
     
