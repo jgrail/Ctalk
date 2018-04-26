@@ -1,4 +1,7 @@
 <html>
+<head>
+    <link rel = "stylesheet" type = "text/css" href = "CTalkStyle.css" />
+</head>
 <style>
   body{
     margin-top: 30px;
@@ -15,6 +18,14 @@
     background-color:  #ccf6ff;
     color: dodgerblue;
     text-shadow: 1px 1px 0px #9fb3b5; /* FF3.5+, Opera 9+, Saf1+, Chrome, IE10 */
+  }
+  h2{
+    text-align: left;
+    
+    background-size: 100%;
+    background-color:  #ccf6ff;
+    color: green;
+    text-shadow: 1px 1px 0px #9fb3b5;
   }
   th{ 
     border: 1px solid;
@@ -80,7 +91,7 @@
 
 
 </body>
-</html>
+
 
 <?php
 session_start();
@@ -95,7 +106,7 @@ require("dbconn.php");
       echo "<li class='navigation'><a href='index.php'>Logout</a></li>
       </ul> <br>";
 
-    echo "This email was sent:";
+    echo "<h2>THIS EMAIL WAS SENT-</h2>";
     echo "<br>";
     echo "<br>";
     echo "New Events: ";
@@ -189,8 +200,8 @@ require("dbconn.php");
 
 ?>
 
+<button type = 'button' class='button' onclick='window.location.href="viewMessages.php"'>Exit</button>
 
-
-
+</html>
 
 

@@ -25,7 +25,7 @@
     text-align: center;
 color: black;
 background-size: 100%;
-background-color:  #d7dfe0;
+background-color:  #ccf6ff;
 color: dodgerblue;
      text-shadow: 1px 1px 0px #9fb3b5; /* FF3.5+, Opera 9+, Saf1+, Chrome, IE10 */
 }
@@ -138,8 +138,8 @@ td:hover {background-color: white;}
                 $headers = "From: claremont@talk.com";
                 mail($to,$subject,$txt,$headers);
 
-                $query = "UPDATE Messages SET emailed = 1 WHERE messageID = '$messageID'";
-                $result = perform_query($connection, $query);
+                // $query = "UPDATE Messages SET emailed = 0 WHERE messageID = '$messageID'";
+                // $result = perform_query($connection, $query);
 
 
             }
@@ -208,8 +208,9 @@ function createDataTable($start, $itemsPerPage, $links) {
                         <td>$name</td>
                         <td>$messageContents</td>
                         <td>$type</td>
-                        <td>$dt</td>
                         <td>$messageID</td>
+                        <td>$dt</td>
+                        
                         <td><input type='checkbox' name='approved[]' value=$messageID></td>
                         <td><input type='checkbox' name='delete[]' value=$messageID></td>
 

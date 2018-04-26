@@ -22,7 +22,7 @@ session_start();
     text-align: center;
     color: black;
     background-size: 100%;
-    background-color:  #d7dfe0;
+    background-color:  #ccf6ff;
     color: dodgerblue;
     text-shadow: 1px 1px 0px #9fb3b5; /* FF3.5+, Opera 9+, Saf1+, Chrome, IE10 */
   }
@@ -246,7 +246,7 @@ function createSortLinks(){
 function createPageLinks($start, $pages, $itemsPerPage, $sort){
 	$thispage = "{$_SERVER['PHP_SELF']}";
 	$sort = isset($_GET['sort']) ? $_GET['sort']: "";
-	echo "This page is $thispage";
+	//echo "This page is $thispage";
 		
 	// creating page links
 	if ($pages > 1) {
