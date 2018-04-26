@@ -50,6 +50,14 @@ background-color:  #d7dfe0;
 color: dodgerblue;
      text-shadow: 1px 1px 0px #9fb3b5; /* FF3.5+, Opera 9+, Saf1+, Chrome, IE10 */
 }
+span{
+    text-align: left;
+    border: ;
+    background-size: 100%;
+    background-color:  ;
+    color: black;
+    font-size: 20px;
+  }
 td:hover {background-color: white;}
  .nav {
     list-style-type: none;
@@ -219,8 +227,10 @@ function createDataTable($start, $itemsPerPage, $links) {
         }
 
         echo "</table>
-                <span>Approve, Delete, and Email: </span><input type='submit' value='Go'>
+                <br/>
+                <span>APPROVE, DELETE, AND EMAIL: </span><input type='submit' value='Go'>
             </form>\n
+            <br/>
             <button type = 'button' class='button' onclick='window.location.href=\"viewMessages.php\"'>Exit</button>";
     }
 
