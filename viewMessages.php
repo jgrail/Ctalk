@@ -98,7 +98,7 @@ session_start();
   //determine if user is admin
   $query = "SELECT admin as 'a' FROM User WHERE userId = '$userID'";
   $admin = perform_query($connection, $query)->fetch_object()->a;  
-  disconnect_from_db($connection, $result);
+  disconnect_from_db($connection, $admin);
 
 	// pagination support
   $itemsPerPage=10;
@@ -134,7 +134,7 @@ function createDataTable($start, $itemsPerPage, $links) {
   <th class=\"name\"><a href={$links['name']}>Name</a></th>
   <th class=\"messageContents\"><a href={$links['message']}>Message</a></th>
   <th class=\"type\"><a href={$links['type']}>Type</a></th>
-  <th class=\"date\"><a href={$links['date']}>Date</a></th>
+  <th class=\"dt\"><a href={$links['date']}>Date</a></th>
 
   </tr> \n ";
 
@@ -191,6 +191,7 @@ function createSortLinks(){
 	$typeLink = "{$_SERVER['PHP_SELF']}?sort=typeA"; 
 	$messageLink = "{$_SERVER['PHP_SELF']}?sort=messageA"; 
 	$titleLink = "{$_SERVER['PHP_SELF']}?sort=titleA";
+  $dateLink = "{$_SERVER['PHP_SELF']}?sort=dateA";
 	$orderby="name ASC";
 	$sort = isset($_GET['sort']) ? $_GET['sort']: "nameA" ;
 
@@ -233,12 +234,23 @@ function createSortLinks(){
    case 'typeD':
    $orderby='type DESC';
    $typeLink = "{$_SERVER['PHP_SELF']}?sort=typeA";
-   break;				
+   break;	
+
+case 'dateA':
+   $orderby='dt ASC';
+   $dateLink = "{$_SERVER['PHP_SELF']}?sort=dateD";
+   break; 
+
+   case 'dateD':
+   $orderby='dt DESC';
+   $dateLink = "{$_SERVER['PHP_SELF']}?sort=dateA";
+   break;
+
    default:
    break;
  }
 
- $links = array("name"=> $nameLink, "type"=> $typeLink, "message"=> $messageLink, "title"=> $titleLink, "orderby" => $orderby);
+ $links = array("date"=>$dateLink, "name"=> $nameLink, "type"=> $typeLink, "message"=> $messageLink, "title"=> $titleLink, "orderby" => $orderby);
 
  return $links;
 }
