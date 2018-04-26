@@ -134,7 +134,7 @@ function createDataTable($start, $itemsPerPage, $links) {
   <th class=\"name\"><a href={$links['name']}>Name</a></th>
   <th class=\"messageContents\"><a href={$links['message']}>Message</a></th>
   <th class=\"type\"><a href={$links['type']}>Type</a></th>
-  <th class=\"dt\"><a href={$links['date']}>Date</a></th>
+  <th class=\"dt\"><a href={$links['date']}>Date Sent</a></th>
 
   </tr> \n ";
 

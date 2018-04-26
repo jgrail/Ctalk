@@ -199,7 +199,7 @@ require("dbconn.php");
 
 
 ?>
-
+<br?>
 <button type = 'button' class='button' onclick='window.location.href="viewMessages.php"'>Exit</button>
 
 </html>
